@@ -1,0 +1,28 @@
+import java.sql.*;
+	import java.util.*;
+	class Test{
+		public static void main(String []args)throws Exception{	
+	
+		// Instantiating Driver Object
+		Driver d = new oracle.JDBC.driver.OracleDriver(); //driver class may change
+		String url = “JDBC:oracle:thin:@localhost:1521:orcl”; // url may change
+
+		Properties pr = new Properties();
+		pr.put("user", "system"); // database user may change
+		pr.put("password","pratap"); // database password may change
+
+		Connection con = d.connect(url , pr);
+		System.out.println(con);
+		
+		// getting a statement object
+		Statement st = con.createStatement();
+		System.out.println(st);
+
+		String sql = “insert into dept values(34 , ‘dname34’, ‘loc34’)”;
+		int count = st.executeUpdate( sql );
+
+		System.out.println(count + “ record updated “ );
+		con.close();
+}
+}
+
